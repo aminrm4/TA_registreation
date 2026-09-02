@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="ink">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>فرم ثبت نام دستیاران آموزشی</title>
+<meta name="description" content="TA registration form" />
+
+
+<link rel="icon" type="image/png" href="src/assets/icons/icon.png" />
+<link rel="apple-touch-icon" href="src/assets/icons/icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+ 
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bg: 'var(--bg)',
+          surface: 'var(--surface)',
+          surface2: 'var(--surface-2)',
+          paper: 'var(--paper)',
+          ink: 'var(--text)',
+          muted: 'var(--muted)',
+          accent: 'var(--accent)',
+          stamp: 'var(--stamp)',
+          hairline: 'var(--border)',
+        },
+        fontFamily: {
+          display: ['"Vazirmatn"', 'sans-serif'],
+          body: ['"Vazirmatn"', 'sans-serif'],
+          mono: ['"Vazirmatn"', 'sans-serif'],
+        },
+        boxShadow: {
+          card: '0 1px 2px rgba(0,0,0,0.25), 0 12px 28px -12px rgba(0,0,0,0.45)',
+          cardHover: '0 2px 4px rgba(0,0,0,0.3), 0 22px 40px -16px rgba(0,0,0,0.55)',
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+ 
+  :root[data-theme="ink"] {
+    --bg: #14181c;
+    --surface: #1b2229;
+    --surface-2: #232b33;
+    --paper: #efe8d8;
+    --text: #ede7d9;
+    --muted: #8b96a1;
+    --accent: #c99a4b;
+    --stamp: #b4533b;
+    --border: #2e3944;
+    --grain-opacity: 0.05;
+  }
+
+  :root[data-theme="parchment"] {
+    --bg: #f1ecdd;
+    --surface: #fffdf7;
+    --surface-2: #e9e1cc;
+    --paper: #ffffff;
+    --text: #211d16;
+    --muted: #6b6355;
+    --accent: #8a6423;
+    --stamp: #9c3f2c;
+    --border: #d9d0b5;
+    --grain-opacity: 0.035;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  .grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .stitched {
+    border: 1.5px dashed var(--border);
+  }
+
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  
+  .hero-word {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hero-word.is-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-word { opacity: 1; transform: none; transition: none; }
+  }
+
+  .stamp-btn { transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease; }
+  .stamp-btn:active { transform: scale(0.94) rotate(-1.5deg); }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  #loader { transition: opacity 0.4s ease; }
+
+  .card-image-wrap { overflow: hidden; }
+  .card-image-wrap img { transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+  .card:hover .card-image-wrap img { transform: scale(1.06); }
+
+  .hairline { background: var(--border); }
+</style>
+</head>
+
+<body class="font-body antialiased">
+
+<div class="grain"></div>
+
+<div id="loader" class="fixed inset-0 z-[100] flex items-center justify-center bg-bg">
+  <div class="flex items-center gap-3 font-mono text-xs tracking-[0.3em] text-muted uppercase">
+    <span class="inline-block h-2 w-2 rounded-full bg-accent animate-pulse"></span>
+    در حال آماده‌سازی فرم‌ها
+  </div>
+</div>
+
+<header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+  <nav class="mx-auto max-w-6xl px-5 sm:px-8">
+    <div id="navInner" class="mt-4 flex items-center justify-between rounded-2xl border border-hairline/0 px-4 py-3 transition-all duration-300">
+      <a href="#home" class="flex items-center gap-2.5 group">
+    
+        <img src="src/assets/icons/icon.png" alt="لوگوی انجمن علمی مهندسی کامپیوتر دانشگاه بوعلی سینا" class="h-9 w-9 rounded-lg object-cover border border-accent/30 group-hover:rotate-[-4deg] transition-transform duration-300" />
+        <span class="font-display text-lg font-semibold tracking-tight">
+        سایت ثبت‌نام دستیاران آموزشی 
+        </span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 font-mono text-[13px] uppercase tracking-wider">
+        <a href="#home" class="nav-link relative text-ink/80 hover:text-ink transition-colors" data-section="home">خانه</a>
+        <a href="#sections" class="nav-link relative text-ink/80 hover:text-ink transition-colors" data-section="sections">فرم‌ها</a>
+        <a href="#about" class="nav-link relative text-ink/80 hover:text-ink transition-colors" data-section="about">سوالات متداول</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="themeToggle" type="button" aria-label="تغییر حالت نمایش" aria-pressed="false"
+          class="flex h-9 w-9 items-center justify-center rounded-lg border border-hairline text-ink/80 hover:text-accent hover:border-accent/50 transition-colors">
+          <svg id="themeIconInk" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+          <svg id="themeIconParchment" xmlns="http://www.w3.org/2000/svg" class="hidden h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"></path></svg>
+        </button>
+
+        <a href="#sections" class="hidden md:inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 font-mono text-[13px] uppercase tracking-wider text-bg font-semibold hover:brightness-110 transition">
+          مشاهده فرم‌ها
+        </a>
+
+        <button id="menuToggle" type="button" aria-label="باز کردن منوی ناوبری" aria-expanded="false" aria-controls="mobileMenu"
+          class="md:hidden flex h-9 w-9 items-center justify-center rounded-lg border border-hairline">
+          <svg id="menuIconOpen" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <svg id="menuIconClose" xmlns="http://www.w3.org/2000/svg" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="md:hidden max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out">
+      <div class="mt-2 rounded-2xl border border-hairline bg-surface px-5 py-4 flex flex-col gap-4 font-mono text-sm uppercase tracking-wider">
+        <a href="#home" class="mobile-link py-1">خانه</a>
+        <a href="#sections" class="mobile-link py-1">فرم‌ها</a>
+        <a href="#about" class="mobile-link py-1">سوالات متداول</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="relative z-10">
+
+  <section id="home" class="relative overflow-hidden px-5 sm:px-8 pt-40 pb-24 md:pt-48 md:pb-32">
+    <div class="mx-auto max-w-6xl grid md:grid-cols-[1.1fr_0.9fr] gap-14 items-center">
+
+      <div class="reveal">
+        <p class="font-mono text-xs uppercase tracking-[0.35em] text-accent mb-5">فهرست فرم‌ های دستیاران آموزشی </p>
+
+        <h1 id="heroTitle" class="font-display text-[2.6rem] leading-[1.05] sm:text-6xl md:text-6xl font-semibold tracking-tight">
+          <span class="hero-word inline-block" style="transition-delay:0ms">تمامی</span>
+          <span class="hero-word inline-block" style="transition-delay:60ms">فرم‌ها</span>
+          <span class="hero-word inline-block" style="transition-delay:120ms">دستیاران آموزشی در</span>
+          <span class="hero-word inline-block" style="transition-delay:180ms">یکجا</span><br class="hidden sm:block" />
+          <span class="hero-word inline-block italic font-medium text-accent" style="transition-delay:260ms">ثبت نام </span>
+          <span class="hero-word inline-block italic font-medium text-accent" style="transition-delay:320ms">کنید.</span>
+        </h1>
+        <p class="mt-6 max-w-lg text-base sm:text-lg text-muted leading-relaxed">
+فرم‌های ثبت‌نام دستیاران آموزشی 
+اگر قصد دارید در ترم ۴۰۵۱ به‌عنوان دستیار آموزشی فعالیت کنید، می‌توانید فرم‌های موردنیاز برای ثبت‌نام را در این بخش مشاهده و تکمیل کنید.
+
+در این سایت تمامی فرم‌های مربوط به فرآیند ثبت‌نام دستیاران آموزشی قرار گرفته است..
+
+</p>
+        <div class="mt-9 flex flex-wrap items-center gap-4">
+          <a href="#sections" class="stamp-btn inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3.5 font-mono text-sm uppercase tracking-wider font-semibold text-bg shadow-card hover:shadow-cardHover">
+            مشاهده فرم‌ها
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
+          <a href="#about" class="inline-flex items-center gap-2 rounded-lg border border-hairline px-6 py-3.5 font-mono text-sm uppercase tracking-wider text-ink/80 hover:text-ink hover:border-accent/40 transition">
+            نحوه استفاده
+          </a>
+        </div>
+      </div>
+
+      <!-- Stacked index-card illustration -->
+      <div class="reveal relative h-[360px] sm:h-[420px]" style="transition-delay:120ms">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="absolute w-64 h-80 rounded-xl bg-surface-2 border border-hairline rotate-[9deg] translate-x-6 translate-y-4 shadow-card"></div>
+          <div class="absolute w-64 h-80 rounded-xl bg-surface-2 border border-hairline -rotate-[6deg] -translate-x-5 shadow-card"></div>
+          <div class="relative w-64 h-80 rounded-xl bg-paper text-[#221d16] border border-hairline shadow-cardHover p-5 flex flex-col justify-between rotate-[1deg]">
+            <div>
+              <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-[#8a7f68]">
+                <span>TA registration form</span>
+                <span class="h-2 w-2 rounded-full bg-stamp"></span>
+              </div>
+              <p class="mt-6 font-display text-xl font-semibold leading-snug">ثبت‌نام<br/></p>
+              <div class="mt-4 h-px w-10 bg-[#c9bfa1]"></div>
+              <p class="mt-4 text-xs leading-relaxed text-[#6b6355]">ترم ۴۰۵۱ </p>
+            </div>
+            <div class="flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-stamp">
+              <span class="inline-block h-6 w-6 rounded-full border-2 border-stamp flex items-center justify-center rotate-[-8deg]">✓</span>
+              فعال
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- scroll cue -->
+    <div class="mt-16 flex justify-center reveal" style="transition-delay:200ms">
+      <a href="#intro" aria-label="برای آشنایی با نحوه استفاده به پایین بروید" class="flex flex-col items-center gap-2 text-muted hover:text-accent transition-colors">
+        <span class="font-mono text-[10px] uppercase tracking-[0.3em]">اسکرول کنید</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ INTRO / HOW IT WORKS ============ -->
+  <section id="intro" class="px-5 sm:px-8 py-20 md:py-28 border-t border-hairline">
+    <div class="mx-auto max-w-6xl">
+      <div class="reveal max-w-xl mb-14">
+        <p class="font-mono text-xs uppercase tracking-[0.35em] text-accent mb-4">نحوه ثبت‌نام</p>
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold tracking-tight">هر مرحله، یک قدم به مقصد.</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-8">
+        <div class="reveal flex flex-col gap-4">
+          <span class="font-mono text-sm text-accent">01</span>
+          <h3 class="font-display text-xl font-semibold">انتخاب استاد</h3>
+          <p class="text-sm text-muted leading-relaxed">فهرست اساتید را ببینید و استاد موردنظر خودتان را پیدا کنید. با توجه به درس و حوزه موردنظر، گزینه مناسب را انتخاب کنید.</p>
+        </div>
+        <div class="reveal flex flex-col gap-4" style="transition-delay:100ms">
+          <span class="font-mono text-sm text-accent">02</span>
+          <h3 class="font-display text-xl font-semibold">باز کردن فرم</h3>
+          <p class="text-sm text-muted leading-relaxed">با انتخاب هر کارت، وارد فرم Google form مربوط به آن می‌شوید و اطلاعات خواسته‌شده را همان‌جا وارد می‌کنید.</p>
+        </div>
+        <div class="reveal flex flex-col gap-4" style="transition-delay:200ms">
+          <span class="font-mono text-sm text-accent">03</span>
+          <h3 class="font-display text-xl font-semibold">ثبت در Google form</h3>
+          <p class="text-sm text-muted leading-relaxed">فرم رو تکمیل و ارسال کنید؛ پاسخ‌هاتون مستقیم برای استاد موردنظر ارسال می‌شه و انجمن علمی  به پاسخ‌ها دسترسی نداره و اون‌ها رو ذخیره نمی‌کنه.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sections" class="px-5 sm:px-8 py-20 md:py-28 border-t border-hairline">
+    <div class="mx-auto max-w-6xl">
+      <div class="reveal flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
+        <div class="max-w-xl">
+          <p class="font-mono text-xs uppercase tracking-[0.35em] text-accent mb-4">فهرست</p>
+          
+          <h2 class="font-display text-3xl sm:text-4xl font-semibold tracking-tight">همه فرم‌های ثبت‌نام رو یک‌جا پیدا کنید.</h2>
+          <p class="mt-4 text-muted leading-relaxed">
+        دنبال استاد خاصی هستی؟ از فیلترها استفاده کن و فرم مربوط به استاد موردنظرت رو سریع پیدا کن.
+          </p>
+        </div>
+      </div>
+
+    
+      <div id="filterBar" role="group" aria-label="فیلتر بر اساس اساتید" class="reveal flex flex-wrap gap-2 mb-10 font-mono text-xs uppercase tracking-wider">
+      </div>
+
+      <div id="cardsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      </div>
+
+      <p id="emptyState" class="hidden text-center text-muted py-16 font-mono text-sm">موردی در این دسته پیدا نشد.</p>
+    </div>
+  </section>
+
+  <section id="about" class="px-5 sm:px-8 py-20 md:py-28 border-t border-hairline">
+    <div class="mx-auto max-w-6xl grid md:grid-cols-[0.8fr_1.2fr] gap-14">
+      <div class="reveal">
+        <p class="font-mono text-xs uppercase tracking-[0.35em] text-accent mb-4">سوالات متداول</p>
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold tracking-tight">یک فهرست، کلی انتخاب.</h2>
+        <p class="mt-5 text-muted leading-relaxed">
+          اگه دوست داری در کنار اساتید تجربه کسب کنی، با فضای آموزشی بیشتر آشنا بشی و یک تجربه متفاوت به رزومه‌ات اضافه کنی، این فرصت می‌تونه شروع خوبی برات باشه.
+
+استاد موردنظرت رو پیدا کن، فرم مربوط به اون رو پر کن و بقیه مسیر رو به استاد بسپر.
+
+شاید ترم ۴۰۵۱، شروع تجربه جدیدت به‌عنوان یک TA باشه! 🚀
+        </p>
+      </div>
+
+      <div id="faqList" class="reveal flex flex-col divide-y divide-hairline border-t border-b border-hairline">
+        <!-- FAQ items -->
+        <div class="faq-item">
+          <button type="button" class="faq-trigger w-full flex items-center justify-between gap-4 py-5 text-left" aria-expanded="false">
+            <span class="font-display text-lg font-medium">آیا پاسخ‌های من ذخیره می‌شوند؟</span>
+            <svg class="faq-icon h-4 w-4 shrink-0 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+          <div class="faq-panel grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out">
+            <div class="overflow-hidden">
+              <p class="pb-5 text-sm text-muted leading-relaxed">خیر. پاسخ‌ها مستقیماً در Google Forms ثبت می‌شوند و این وب‌سایت هیچ‌یک از اطلاعات شما را ذخیره نمی‌کند. این سایت تنها برای دسترسی و هدایت شما به فرم مربوط به هر استاد طراحی شده است.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-trigger w-full flex items-center justify-between gap-4 py-5 text-left" aria-expanded="false">
+            <span class="font-display text-lg font-medium">آیا می‌توانم برای تیم کمک‌آموزشی بیش از یک درس ثبت‌نام کنم؟</span>
+            <svg class="faq-icon h-4 w-4 shrink-0 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+          <div class="faq-panel grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out">
+            <div class="overflow-hidden">
+              <p class="pb-5 text-sm text-muted leading-relaxed">بله — امکان ثبت‌نام در بیش از یک درس، بستگی به تأیید اساتید مربوطه دارد.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-trigger w-full flex items-center justify-between gap-4 py-5 text-left" aria-expanded="false">
+            <span class="font-display text-lg font-medium">چرا لینک‌ها در پنجره جدید باز می‌شوند؟</span>
+            <svg class="faq-icon h-4 w-4 shrink-0 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+          <div class="faq-panel grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out">
+            <div class="overflow-hidden">
+              <p class="pb-5 text-sm text-muted leading-relaxed">چون ادامه مراحل ثبت‌نام در Google Forms انجام می‌شود</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="px-5 sm:px-8 py-20 md:py-24 border-t border-hairline">
+    <div class="reveal mx-auto max-w-4xl rounded-2xl border border-hairline bg-surface px-8 py-14 sm:px-16 text-center relative overflow-hidden">
+      <div class="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-accent/10 blur-3xl"></div>
+      <p class="font-mono text-xs uppercase tracking-[0.35em] text-accent mb-5">آماده ثبت‌نام هستید؟</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-semibold tracking-tight max-w-xl mx-auto">
+        بخش مورد نظر خود را پیدا کنید و فرم را باز کنید.
+      </h2>
+      <a href="#sections" class="stamp-btn mt-8 inline-flex items-center gap-2 rounded-lg bg-accent px-7 py-3.5 font-mono text-sm uppercase tracking-wider font-semibold text-bg shadow-card hover:shadow-cardHover">
+        مشاهده فرم ها 
+      </a>
+    </div>
+  </section>
+
+</main>
+
+
+<footer class="relative z-10 border-t border-hairline px-5 sm:px-8 py-14">
+  <div class="mx-auto max-w-6xl flex items-center justify-center">
+    <a href="#home" class="flex items-center gap-2.5">
+      <img src="src/assets/icons/icon.png" alt="لوگوی انجمن علمی مهندسی کامپیوتر دانشگاه بوعلی سینا" class="h-8 w-8 rounded-lg object-cover border border-accent/30" />
+      <span class="font-display text-base font-semibold">انجمن علمی مهندسی کامپیوتر دانشگاه بوعلی سینا</span>
+    </a>
+    <!-- TODO: Replace with real footer tagline -->
+    <!-- TODO: Replace with real contact information -->
+    <!-- TODO: Replace with real social links -->
+  </div>
+</footer>
+
+<!-- ============ BACK TO TOP ============ -->
+<button id="backToTop" type="button" aria-label="بازگشت به بالا"
+  class="fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-accent text-bg shadow-cardHover opacity-0 translate-y-3 pointer-events-none transition-all duration-300">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+</button>
+
+<!-- ============ IMAGE LIGHTBOX / MODAL ============ -->
+<div id="lightbox" class="fixed inset-0 z-[90] hidden items-center justify-center bg-black/80 backdrop-blur-sm px-6" role="dialog" aria-modal="true" aria-label="پیش‌نمایش تصویر فرم">
+  <button id="lightboxClose" type="button" aria-label="بستن پیش‌نمایش" class="absolute top-6 right-6 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white hover:border-white/50 transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+  </button>
+  <div class="max-w-2xl w-full">
+    <div id="lightboxImage" class="aspect-[4/3] w-full rounded-xl border border-white/10"></div>
+    <p id="lightboxCaption" class="mt-4 text-center font-mono text-xs uppercase tracking-wider text-white/70"></p>
+  </div>
+</div>
+
+<script type="module" src="src/js/main.js"></script>
+</body>
+</html>
