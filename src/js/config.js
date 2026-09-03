@@ -130,7 +130,7 @@ export const pagesData = [
   },
   {
     fileNo: '04',
-    title: 'داده کاوری ',
+    title: 'داده کاوی ',
     description: 'اگه عاشق اینی که وسط یه عالمه داده بی‌نظم، یه الگوی قشنگ پیدا کنی، این تیم دقیقاً برای توئه. با دکتر منصوری‌زاده بیا تو تیم داده‌کاوی.',
     category: 'dr-mansourizadeh', // TODO: assign the correct doctor/category
     status: 'فعال',
