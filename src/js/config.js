@@ -43,12 +43,16 @@
  */
 export const categories = [
   { id: 'all', label: 'همه' },
-  { id: 'dr-sanati', label: 'دکتر صنعتی' }, // TODO: keep or rename
-  { id: 'dr-abdoli', label: 'دکتر عبدلی' }, // TODO: keep or rename
-  // TODO: add more doctors/categories here, following the same pattern:
-  // { id: 'dr-example', label: 'دکتر مثال' },
+  { id: 'dr-sanati', label: 'دکتر صنعتی' },
+  { id: 'dr-abdoli', label: 'دکتر عبدلی' },
+  { id: 'dr-bashiri', label: 'دکتر بشیری' },
+  { id: 'dr-mohammadi', label: 'دکتر محمدی' },
+  { id: 'dr-dezfolian', label: 'دکتر دزفولیان' },
+  { id: 'dr-davari', label: 'دکتر داوری' },
+  { id: 'dr-mughith', label: 'دکتر مغیث' },
+  { id: 'dr-mansourizadeh', label: 'دکتر منصوری زاده' },
+  { id: 'dr-javidani', label: 'دکتر جاویدانی' },
 ];
-
 /**
  * ----------------------------------------------------------------------------
  * PAGES / FORM CARDS
@@ -98,49 +102,89 @@ export const pagesData = [
   {
     fileNo: '01',
     title: 'ساختمان های داده',
-    description: 'برای ثبت‌نام در تیم کمک‌آموزشی درس ساختمان‌های داده با استاد علی جاویدانی، فرم رو پر کن تا بتونی توی روند کمک‌آموزشی این درس همراه ما باشی.',
-    category: 'dr-sanati', // TODO: assign the correct doctor/category
+    description: 'برای  در تیم کمک‌آموزشی درس ساختمان‌های داده با استاد علی جاویدانی، فرم رو پر کن تا بتونی توی روند کمک‌آموزشی این درس همراه ما باشی.',
+    category: 'dr-javidani', // TODO: assign the correct doctor/category
     status: 'فعال',
     // Real screenshot in place — see src/assets/images/membership.png
-    image: 'src/assets/images/membership.png',
+    image: 'src/assets/images/javidani.png',
     formUrl:
       'https://docs.google.com/forms/d/e/1FAIpQLSfOm0zEniQ_IbBopwjT4v8GYFM8mlYijbearA8PYcaRXu6XTA/viewform?usp=preview',
   },
   {
     fileNo: '02',
-    title: 'ثبت‌نام عضویت',
-    description: 'ثبت‌نام عضویت',
-    category: 'dr-abdoli', // TODO: assign the correct doctor/category
+    title: 'امنیت شبکه',
+    description: 'اگه فکر می‌کنی فایروال بهترین دوست بشریته و هک‌شدن رو فقط تو فیلما دیدی نه تو زندگی واقعیت، جای تو تو تیم امنیت شبکه دکتر مغیثه! فرم رو بزن و بیا.',
+    category: 'dr-mughith', // TODO: assign the correct doctor/category
     status: 'فعال',
-    image: 'src/assets/images/.png', // TODO: replace with real screenshot
-    formUrl: 'https://docs.google.com/forms/d/e/EXAMPLE_FORM_ID/viewform', // TODO: replace with real Google Form URL
+    image: 'src/assets/images/mughith.png', // TODO: replace with real screenshot
+    formUrl: 'https://forms.gle/vmfMWGbbEEcFU4gH8', // TODO: replace with real Google Form URL
   },
   {
     fileNo: '03',
-    title: 'ثبت‌نام عضویت',
-    description: 'ثبت‌نام عضویت',
-    category: 'dr-sanati', // TODO: assign the correct doctor/category
+    title: 'مبانی برنامه نویسی',
+    description: 'یادته اولین باری که یه خط کد نوشتی و اجرا شد چه حالی داشتی؟ حالا نوبت توئه که این حس رو به بچه‌های ورودی جدید منتقل کنی. تیم دکتر بشیری منتظرته.',
+    category: 'dr-bashiri', // TODO: assign the correct doctor/category
     status: 'فعال',
-    image: 'src/assets/images/.png', // TODO: replace with real screenshot
-    formUrl: 'https://docs.google.com/forms/d/e/EXAMPLE_FORM_ID/viewform', // TODO: replace with real Google Form URL
+    image: 'src/assets/images/bashiri.png', // TODO: replace with real screenshot
+    formUrl: 'https://forms.gle/DUaZfAXZm8SS7ug76', // TODO: replace with real Google Form URL
   },
   {
     fileNo: '04',
-    title: 'ثبت‌نام عضویت',
-    description: 'ثبت‌نام عضویت',
-    category: 'dr-abdoli', // TODO: assign the correct doctor/category
+    title: 'داده کاوری ',
+    description: 'اگه عاشق اینی که وسط یه عالمه داده بی‌نظم، یه الگوی قشنگ پیدا کنی، این تیم دقیقاً برای توئه. با دکتر منصوری‌زاده بیا تو تیم داده‌کاوی.',
+    category: 'dr-mansourizadeh', // TODO: assign the correct doctor/category
     status: 'فعال',
-    image: 'src/assets/images/.png', // TODO: replace with real screenshot
-    formUrl: 'https://docs.google.com/forms/d/e/EXAMPLE_FORM_ID/viewform', // TODO: replace with real Google Form URL
+    image: 'src/assets/images/mansourizadeh.png', // TODO: replace with real screenshot
+    formUrl: 'https://forms.gle/ywyAbuGpbr3qjw76A', // TODO: replace with real Google Form URL
   },
   {
     fileNo: '05',
-    title: 'ثبت‌نام عضویت',
-    description: 'ثبت‌نام عضویت',
+    title: 'مدار های منطقی ',
+    description: 'صفر و یک فقط عدد نیستن، یه دنیای کاملن! اگه از گیت‌ها و فلیپ‌فلاپ‌ها خوشت میاد، بیا تیم کمک‌آموزشی مدارهای منطقی با دکتر عبدلی رو تکمیل کن.',
+    category: 'dr-abdoli', // TODO: assign the correct doctor/category
+    status: 'فعال',
+    image: 'src/assets/images/abdoli.png', // TODO: replace with real screenshot
+    formUrl: 'https://forms.gle/WtpTSbejQLj34sLn7', // TODO: replace with real Google Form URL
+  },
+
+    {
+    fileNo: '06',
+    title: 'طراحی پایگاه داده',
+    description: 'اگه فکر می‌کنی یه دیتابیس خوب طراحی‌شده از خیلی چیزا مهم‌تره و نرمال‌سازی رو دوست داری نه که ازش فرار کنی، تیم دکتر صنعتی جای توئه.',
     category: 'dr-sanati', // TODO: assign the correct doctor/category
     status: 'فعال',
-    image: 'src/assets/images/.png', // TODO: replace with real screenshot
-    formUrl: 'https://docs.google.com/forms/d/e/EXAMPLE_FORM_ID/viewform', // TODO: replace with real Google Form URL
+    image: 'src/assets/images/sanati.png', // TODO: replace with real screenshot
+    formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdFuBnUlv01sabEduwRidTdhh2GMDUVvhK3AT4Amg_DECHbtQ/viewform', // TODO: replace with real Google Form URL
+  },
+
+
+    {
+    fileNo: '07',
+    title: 'شبکه',
+    description: 'پکت‌ها از کجا میان، از کجا رد میشن، کجا میرن؟ اگه این سوالا برات جذابن نه خسته‌کننده، بیا با دکتر محمدی توی تیم کمک‌آموزشی شبکه باش.',
+    category: 'dr-mohammadi', // TODO: assign the correct doctor/category
+    status: 'فعال',
+    image: 'src/assets/images/mohammadi.png', // TODO: replace with real screenshot
+    formUrl: 'https://forms.gle/H3KYJyXpWRWBQ1Qk8', // TODO: replace with real Google Form URL
+  },
+    {
+    fileNo: '08',
+    title: 'هوش مصنوعی',
+    description: 'رباتا هنوز دنیا رو تسخیر نکردن ولی هوش مصنوعی داره همه‌چیز رو عوض می‌کنه. اگه دوست داری تو این موج جلوتر باشی، تیم دکتر دزفولیان منتظر توئه.',
+    category: 'dr-dezfolian', // TODO: assign the correct doctor/category
+    status: 'فعال',
+    image: 'src/assets/images/dezfolian.png', // TODO: replace with real screenshot
+    formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScwJYqr067ELsfTSrxnD1w52eNsr8nruR7e3sGJjYDiBevJ8g/viewform?usp=publish-editor', // TODO: replace with real Google Form URL
+  },
+
+      {
+    fileNo: '09',
+    title: 'ریاضیات گسسته',
+    description: 'اگه اثبات‌ها و استقرای ریاضی برات مثل حل معماست نه شکنجه، جات تو تیم کمک‌آموزشی ریاضیات گسسته با دکتر داوریه. بیا بهمون ملحق شو.',
+    category: 'dr-davari', // TODO: assign the correct doctor/category
+    status: 'فعال',
+    image: 'src/assets/images/davari.png', // TODO: replace with real screenshot
+    formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfvUk1dviSEHNFoafAJz2ENhfbZSWpgXFR4uVnjLlZ1Qh45gA/viewform', // TODO: replace with real Google Form URL
   },
 
   // TODO: Add more form cards by copying one of the objects above — there
