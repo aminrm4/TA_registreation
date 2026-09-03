@@ -102,7 +102,7 @@ export const pagesData = [
   {
     fileNo: '01',
     title: 'ساختمان های داده',
-    description: 'برای  در تیم کمک‌آموزشی درس ساختمان‌های داده با استاد علی جاویدانی، فرم رو پر کن تا بتونی توی روند کمک‌آموزشی این درس همراه ما باشی.',
+    description: 'برای ثبت نام در تیم کمک‌ آموزشی درس ساختمان‌های داده با استاد علی جاویدانی، فرم رو پر کن تا بتونی توی روند کمک‌آموزشی این درس همراه ما باشی.',
     category: 'dr-javidani', // TODO: assign the correct doctor/category
     status: 'فعال',
     // Real screenshot in place — see src/assets/images/membership.png
