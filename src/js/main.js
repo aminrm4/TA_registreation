@@ -1,19 +1,6 @@
 import { pagesData, categories } from './config.js';
-
-/**
- * Fieldbook — main.js
- *
- * Everything here is event-driven: no polling, no infinite animation
- * loops, no continuous DOM writes. Scroll-triggered work goes through
- * IntersectionObserver so it only runs when something actually enters
- * or leaves the viewport.
- */
-
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ---------------------------------------------------------------------
- * Loader — fades out as soon as the page is interactive. No artificial delay.
- * ------------------------------------------------------------------- */
 function hideLoader() {
   const loader = document.getElementById('loader');
   if (!loader) return;
@@ -21,9 +8,6 @@ function hideLoader() {
   window.setTimeout(() => loader.remove(), 400);
 }
 
-/* ---------------------------------------------------------------------
- * Theme toggle (ink / parchment), persisted in localStorage.
- * ------------------------------------------------------------------- */
 function initThemeToggle() {
   const root = document.documentElement;
   const toggle = document.getElementById('themeToggle');
@@ -51,11 +35,6 @@ function initThemeToggle() {
   });
 }
 
-/* ---------------------------------------------------------------------
- * Sticky navbar: adds a background/blur once the page has scrolled past
- * the hero. Uses a single scroll listener guarded by requestAnimationFrame
- * so it never runs more than once per frame.
- * ------------------------------------------------------------------- */
 function initNavbarScrollState() {
   const navInner = document.getElementById('navInner');
   let ticking = false;
@@ -83,9 +62,6 @@ function initNavbarScrollState() {
   applyState();
 }
 
-/* ---------------------------------------------------------------------
- * Mobile menu.
- * ------------------------------------------------------------------- */
 function initMobileMenu() {
   const menuToggle = document.getElementById('menuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -109,15 +85,7 @@ function initMobileMenu() {
   });
 }
 
-/* ---------------------------------------------------------------------
- * Render section cards + the category filter bar from config.js. Both
- * `pagesData` and `categories` can have any number of entries — nothing
- * here assumes a fixed count for either.
- * ------------------------------------------------------------------- */
 function placeholderSvg(label) {
-  // Lightweight inline SVG shown only if a card has no `image` set, or
-  // if the given image file fails to load (see the img.onerror below).
-  // Encoded as a data URI so no network request or extra file is needed.
   const safe = label.replace(/&/g, '&amp;').replace(/</g, '&lt;');
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
@@ -137,12 +105,6 @@ function buildCard(page) {
   article.className =
     'card reveal group relative flex flex-col rounded-xl border border-hairline bg-surface overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-cardHover hover:border-accent/40';
   article.dataset.category = page.category;
-
-  // Real screenshot if `page.image` is set and loads; otherwise the
-  // generated placeholder graphic. Whatever size the real image is, the
-  // "aspect-[4/3] ... object-cover" classes below always crop it into a
-  // consistent 4:3 box — no manual resizing needed when new images are
-  // added later.
   const initialImage = page.image || placeholderSvg('پیش‌نمایش در دسترس نیست');
 
   article.innerHTML = `
@@ -162,16 +124,12 @@ function buildCard(page) {
     </div>
   `;
 
-  // If a real image path is broken/missing, fall back to the placeholder
-  // instead of showing a broken-image icon. Guarded with a one-time flag
-  // so a failing placeholder can't loop.
   const imgEl = article.querySelector('img');
   imgEl.addEventListener('error', function onError() {
     imgEl.removeEventListener('error', onError);
     imgEl.src = placeholderSvg('پیش‌نمایش در دسترس نیست');
   });
 
-  // Wire up the lightbox preview button.
   const previewBtn = article.querySelector('.preview-trigger');
   previewBtn.addEventListener('click', () => openLightbox(page));
 
@@ -190,7 +148,6 @@ function renderCards(activeCategory = 'all') {
   visible.forEach((page) => grid.appendChild(buildCard(page)));
   emptyState.classList.toggle('hidden', visible.length > 0);
 
-  // Newly injected cards need to be observed for the scroll-reveal effect.
   observeReveal(grid.querySelectorAll('.reveal'));
 }
 
@@ -224,14 +181,10 @@ function filterBtnClasses(active) {
     : `${base} border-hairline text-muted hover:text-ink hover:border-accent/40`;
 }
 
-/* ---------------------------------------------------------------------
- * Scroll reveal via IntersectionObserver. Elements are observed once;
- * after they've revealed, they're unobserved so no further work happens.
- * ------------------------------------------------------------------- */
 let revealObserver;
 
 function observeReveal(elements) {
-  if (prefersReducedMotion) return; // CSS already renders them fully visible.
+  if (prefersReducedMotion) return;
 
   if (!revealObserver) {
     revealObserver = new IntersectionObserver(
@@ -250,10 +203,6 @@ function observeReveal(elements) {
   elements.forEach((el) => revealObserver.observe(el));
 }
 
-/* ---------------------------------------------------------------------
- * Active nav-link highlighting, driven by IntersectionObserver on the
- * three main sections rather than a scroll-position calculation.
- * ------------------------------------------------------------------- */
 function initActiveNavTracking() {
   const sectionIds = ['home', 'sections', 'about'];
   const navLinks = document.querySelectorAll('.nav-link');
@@ -281,9 +230,6 @@ function initActiveNavTracking() {
   });
 }
 
-/* ---------------------------------------------------------------------
- * FAQ accordion — single-purpose, keyboard accessible via native <button>.
- * ------------------------------------------------------------------- */
 function initFaqAccordion() {
   document.querySelectorAll('.faq-item').forEach((item) => {
     const trigger = item.querySelector('.faq-trigger');
@@ -299,19 +245,12 @@ function initFaqAccordion() {
   });
 }
 
-/* ---------------------------------------------------------------------
- * Lightbox / modal for previewing a section's screenshot.
- * ------------------------------------------------------------------- */
 let lastFocusedElement = null;
 
 function openLightbox(page) {
   const lightbox = document.getElementById('lightbox');
   const imageEl = document.getElementById('lightboxImage');
   const caption = document.getElementById('lightboxCaption');
-
-  // Try the real image first; if it 404s, swap to the placeholder.
-  // (A background-image can't fire onerror, so we probe with a
-  // throwaway Image object first.)
   const probe = new Image();
   const fallback = placeholderSvg('پیش‌نمایش در دسترس نیست');
   const realSrc = page.image || fallback;
@@ -353,9 +292,6 @@ function initLightbox() {
   });
 }
 
-/* ---------------------------------------------------------------------
- * Back-to-top button — shown once the user has scrolled past the hero.
- * ------------------------------------------------------------------- */
 function initBackToTop() {
   const button = document.getElementById('backToTop');
   let ticking = false;
@@ -387,13 +323,6 @@ function initBackToTop() {
   update();
 }
 
-/* ---------------------------------------------------------------------
- * Hero title intro: reveals the words in #heroTitle one after another on
- * page load (not scroll-triggered — it's the first thing visible). Each
- * <span class="hero-word"> already carries its own stagger via an inline
- * transition-delay in the HTML; this just toggles them all to visible at
- * once and CSS handles the stagger. Runs once, never repeats.
- * ------------------------------------------------------------------- */
 function initHeroIntro() {
   const words = document.querySelectorAll('#heroTitle .hero-word');
   if (words.length === 0) return;
@@ -403,8 +332,6 @@ function initHeroIntro() {
     return;
   }
 
-  // Double rAF ensures the browser has painted the initial (hidden)
-  // state before we flip the class, so the transition actually plays.
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       words.forEach((word) => word.classList.add('is-in'));
@@ -412,9 +339,6 @@ function initHeroIntro() {
   });
 }
 
-/* ---------------------------------------------------------------------
- * Init
- * ------------------------------------------------------------------- */
 function init() {
   const yearElement = document.getElementById('year');
   if (yearElement) yearElement.textContent = String(new Date().getFullYear());
