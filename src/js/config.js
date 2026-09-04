@@ -130,7 +130,7 @@ export const pagesData = [
   },
   {
     fileNo: '04',
-    title: 'داده کاوری ',
+    title: 'داده کاوی',
     description: 'اگه عاشق اینی که وسط یه عالمه داده بی‌نظم، یه الگوی قشنگ پیدا کنی، این تیم دقیقاً برای توئه. با دکتر منصوری‌زاده بیا تو تیم داده‌کاوی.',
     category: 'dr-mansourizadeh', // TODO: assign the correct doctor/category
     status: 'فعال',
@@ -139,7 +139,7 @@ export const pagesData = [
   },
   {
     fileNo: '05',
-    title: 'مدار های منطقی ',
+    title: 'مدار منطقی',
     description: 'صفر و یک فقط عدد نیستن، یه دنیای کاملن! اگه از گیت‌ها و فلیپ‌فلاپ‌ها خوشت میاد، بیا تیم کمک‌آموزشی مدارهای منطقی با دکتر عبدلی رو تکمیل کن.',
     category: 'dr-abdoli', // TODO: assign the correct doctor/category
     status: 'فعال',
@@ -160,7 +160,7 @@ export const pagesData = [
 
     {
     fileNo: '07',
-    title: 'شبکه',
+    title: 'شبکه های کامپیوتری',
     description: 'پکت‌ها از کجا میان، از کجا رد میشن، کجا میرن؟ اگه این سوالا برات جذابن نه خسته‌کننده، بیا با دکتر محمدی توی تیم کمک‌آموزشی شبکه باش.',
     category: 'dr-mohammadi', // TODO: assign the correct doctor/category
     status: 'فعال',
@@ -173,7 +173,7 @@ export const pagesData = [
     description: 'رباتا هنوز دنیا رو تسخیر نکردن ولی هوش مصنوعی داره همه‌چیز رو عوض می‌کنه. اگه دوست داری تو این موج جلوتر باشی، تیم دکتر دزفولیان منتظر توئه.',
     category: 'dr-dezfolian', // TODO: assign the correct doctor/category
     status: 'فعال',
-    image: 'src/assets/images/dezfolian.png', // TODO: replace with real screenshot
+    image: 'src/assets/images/dezfolian.jpg', // TODO: replace with real screenshot
     formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScwJYqr067ELsfTSrxnD1w52eNsr8nruR7e3sGJjYDiBevJ8g/viewform?usp=publish-editor', // TODO: replace with real Google Form URL
   },
 
