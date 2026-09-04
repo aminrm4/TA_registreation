@@ -111,7 +111,7 @@ function buildCard(page) {
     <button type="button" class="card-image-wrap preview-trigger relative block aspect-[4/3] w-full overflow-hidden bg-surface2 focus-visible:outline-none" aria-label="پیش‌نمایش تصویر ${page.title}">
       <img src="${initialImage}" alt="پیش‌نمایش صفحه ${page.title}" class="h-full w-full object-cover" loading="lazy" />
       <span class="absolute top-3 left-3 rounded-full border border-white/15 bg-black/40 backdrop-blur px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-white/80">شماره فرم ${page.fileNo}</span>
-      <span class="absolute top-3 right-3 rounded-full bg-accent/90 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-bg font-semibold">${page.status}</span>
+      <span class="absolute top-3 right-3 rounded-full bg-green-500/15 px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-wider text-green-400">${page.status}</span>
     </button>
     <div class="flex flex-1 flex-col p-5">
       <h3 class="font-display text-lg font-semibold leading-snug">${page.title}</h3>
