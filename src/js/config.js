@@ -102,8 +102,8 @@ export const pagesData = [
   {
     fileNo: '01',
     title: 'ساختمان های داده',
-    description: 'برای ثبت نام در تیم کمک‌ آموزشی درس ساختمان‌های داده با استاد علی جاویدانی، فرم رو پر کن تا بتونی توی روند کمک‌آموزشی این درس همراه ما باشی.',
-    category: 'dr-javidani', // TODO: assign the correct doctor/category
+    description: 'برای ثبت‌نام در تیم دستیاران آموزشی درس ساختمان‌های داده با تدریس  دکتر علی جاویدانی، لطفاً فرم زیر را تکمیل نمایید تا در روند دستیاری این درس همراه ما باشید.',  
+      category: 'dr-javidani', // TODO: assign the correct doctor/category
     status: 'فعال',
     // Real screenshot in place — see src/assets/images/membership.png
     image: 'src/assets/images/javidani.png',
@@ -113,7 +113,7 @@ export const pagesData = [
   {
     fileNo: '02',
     title: 'امنیت شبکه',
-    description: 'اگه فکر می‌کنی فایروال بهترین دوست بشریته و هک‌شدن رو فقط تو فیلما دیدی نه تو زندگی واقعیت، جای تو تو تیم امنیت شبکه دکتر مغیثه! فرم رو بزن و بیا.',
+    description: 'در صورت علاقه‌مندی به مباحث امنیت شبکه، می‌توانید در تیم دستیاران آموزشی درس امنیت شبکه با تدریس  دکتر مغیث عضو شوید. لطفاً برای ثبت‌نام فرم زیر را تکمیل نمایید.',     
     category: 'dr-mughith', // TODO: assign the correct doctor/category
     status: 'فعال',
     image: 'src/assets/images/mughith.png', // TODO: replace with real screenshot
@@ -122,26 +122,26 @@ export const pagesData = [
   {
     fileNo: '03',
     title: 'مبانی برنامه نویسی',
-    description: 'یادته اولین باری که یه خط کد نوشتی و اجرا شد چه حالی داشتی؟ حالا نوبت توئه که این حس رو به بچه‌های ورودی جدید منتقل کنی. تیم دکتر بشیری منتظرته.',
-    category: 'dr-bashiri', // TODO: assign the correct doctor/category
+    description: 'علاقه‌مندان به انتقال تجربه برنامه‌نویسی به دانشجویان ورودی جدید می‌توانند به تیم دستیاران آموزشی این درس با تدریس دکتر بشیری بپیوندند. خواهشمند است برای ثبت‌نام فرم زیر را تکمیل نمایید.',
+        category: 'dr-bashiri', // TODO: assign the correct doctor/category
     status: 'فعال',
     image: 'src/assets/images/bashiri.png', // TODO: replace with real screenshot
     formUrl: 'https://forms.gle/DUaZfAXZm8SS7ug76', // TODO: replace with real Google Form URL
   },
   {
     fileNo: '04',
-    title: 'داده کاوی',
-    description: 'اگه عاشق اینی که وسط یه عالمه داده بی‌نظم، یه الگوی قشنگ پیدا کنی، این تیم دقیقاً برای توئه. با دکتر منصوری‌زاده بیا تو تیم داده‌کاوی.',
-    category: 'dr-mansourizadeh', // TODO: assign the correct doctor/category
+    title: 'داده کاوی ',
+    description: 'از داوطلبان همکاری با دکتر منصوری‌زاده در قالب دستیار آموزشی درس داده‌کاوی، خواهشمند است جهت ثبت‌نام، فرم مربوطه را تکمیل نمایند.',      
+      category: 'dr-mansourizadeh', // TODO: assign the correct doctor/category
     status: 'فعال',
     image: 'src/assets/images/mansourizadeh.png', // TODO: replace with real screenshot
     formUrl: 'https://forms.gle/ywyAbuGpbr3qjw76A', // TODO: replace with real Google Form URL
   },
   {
     fileNo: '05',
-    title: 'مدار منطقی',
-    description: 'صفر و یک فقط عدد نیستن، یه دنیای کاملن! اگه از گیت‌ها و فلیپ‌فلاپ‌ها خوشت میاد، بیا تیم کمک‌آموزشی مدارهای منطقی با دکتر عبدلی رو تکمیل کن.',
-    category: 'dr-abdoli', // TODO: assign the correct doctor/category
+    title: 'مدار های منطقی ',
+    description: 'دستیار آموزشی درس مدارهای منطقی با تدریس دکتر عبدلی از بین داوطلبان علاقه‌مند انتخاب خواهد شد. لطفاً برای ثبت‌نام، فرم مربوطه را تکمیل نمایید.',  
+      category: 'dr-abdoli', // TODO: assign the correct doctor/category
     status: 'فعال',
     image: 'src/assets/images/abdoli.png', // TODO: replace with real screenshot
     formUrl: 'https://forms.gle/WtpTSbejQLj34sLn7', // TODO: replace with real Google Form URL
@@ -150,8 +150,8 @@ export const pagesData = [
     {
     fileNo: '06',
     title: 'طراحی پایگاه داده',
-    description: 'اگه فکر می‌کنی یه دیتابیس خوب طراحی‌شده از خیلی چیزا مهم‌تره و نرمال‌سازی رو دوست داری نه که ازش فرار کنی، تیم دکتر صنعتی جای توئه.',
-    category: 'dr-sanati', // TODO: assign the correct doctor/category
+    description: 'به‌منظور تکمیل تیم دستیاران آموزشی درس پایگاه داده، از علاقه‌مندان به همکاری با دکتر صنعتی دعوت می‌شود جهت ثبت‌نام، فرم مربوطه را تکمیل نمایند.',
+        category: 'dr-sanati', // TODO: assign the correct doctor/category
     status: 'فعال',
     image: 'src/assets/images/sanati.png', // TODO: replace with real screenshot
     formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdFuBnUlv01sabEduwRidTdhh2GMDUVvhK3AT4Amg_DECHbtQ/viewform', // TODO: replace with real Google Form URL
@@ -160,9 +160,9 @@ export const pagesData = [
 
     {
     fileNo: '07',
-    title: 'شبکه های کامپیوتری',
-    description: 'پکت‌ها از کجا میان، از کجا رد میشن، کجا میرن؟ اگه این سوالا برات جذابن نه خسته‌کننده، بیا با دکتر محمدی توی تیم کمک‌آموزشی شبکه باش.',
-    category: 'dr-mohammadi', // TODO: assign the correct doctor/category
+    title: 'شبکه',
+    description: 'به‌منظور تکمیل تیم دستیاران آموزشی درس شبکه، از علاقه‌مندان به همکاری با دکتر محمدی دعوت می‌شود جهت ثبت‌نام، فرم مربوطه را تکمیل نمایند.',
+        category: 'dr-mohammadi', // TODO: assign the correct doctor/category
     status: 'فعال',
     image: 'src/assets/images/mohammadi.png', // TODO: replace with real screenshot
     formUrl: 'https://forms.gle/H3KYJyXpWRWBQ1Qk8', // TODO: replace with real Google Form URL
@@ -170,8 +170,7 @@ export const pagesData = [
     {
     fileNo: '08',
     title: 'هوش مصنوعی',
-    description: 'رباتا هنوز دنیا رو تسخیر نکردن ولی هوش مصنوعی داره همه‌چیز رو عوض می‌کنه. اگه دوست داری تو این موج جلوتر باشی، تیم دکتر دزفولیان منتظر توئه.',
-    category: 'dr-dezfolian', // TODO: assign the correct doctor/category
+    description: 'از داوطلبان علاقه‌مند به همکاری با دکتر دزفولیان در قالب دستیار آموزشی درس هوش مصنوعی دعوت به‌عمل می‌آید جهت ثبت‌نام، فرم مربوطه را تکمیل نمایند.',    category: 'dr-dezfolian', // TODO: assign the correct doctor/category
     status: 'فعال',
     image: 'src/assets/images/dezfolian.jpg', // TODO: replace with real screenshot
     formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScwJYqr067ELsfTSrxnD1w52eNsr8nruR7e3sGJjYDiBevJ8g/viewform?usp=publish-editor', // TODO: replace with real Google Form URL
@@ -180,8 +179,7 @@ export const pagesData = [
       {
     fileNo: '09',
     title: 'ریاضیات گسسته',
-    description: 'اگه اثبات‌ها و استقرای ریاضی برات مثل حل معماست نه شکنجه، جات تو تیم کمک‌آموزشی ریاضیات گسسته با دکتر داوریه. بیا بهمون ملحق شو.',
-    category: 'dr-davari', // TODO: assign the correct doctor/category
+    description: 'برای علاقه‌مندانی که حل اثبات‌ها و استقرای ریاضی را نه دشوار بلکه همچون حل یک معما می‌دانند، تیم دستیاران آموزشی درس ریاضیات گسسته با تدریس دکتر داوری فرصت همکاری فراهم کرده است. خواهشمند است جهت ثبت‌نام، فرم مربوطه را تکمیل نمایید.',    category: 'dr-davari', // TODO: assign the correct doctor/category
     status: 'فعال',
     image: 'src/assets/images/davari.png', // TODO: replace with real screenshot
     formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfvUk1dviSEHNFoafAJz2ENhfbZSWpgXFR4uVnjLlZ1Qh45gA/viewform', // TODO: replace with real Google Form URL
